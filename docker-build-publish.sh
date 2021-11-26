@@ -5,7 +5,7 @@ echo $VERSION
 # publish .net server applications
 cd server
 
-docker build -f ./WebApi/Dockerfile --force-rm -t antonybaasan/robogachi.webapi:$VERSION .
-docker push antonybaasan/robogachi.webapi:$VERSION
+docker build -f ./WebApi/Dockerfile --force-rm -t antonybaasan/robotgotchi.webapi:$VERSION .
+docker push antonybaasan/robotgotchi.webapi:$VERSION
 
 read -p "Press enter to continue"
