@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FirebaseAdmin;
+using FirebaseAdmin.Auth;
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Firestore;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +12,28 @@ namespace WebApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private string uid = "0x0e90709f60fdacea987fcbba0927e0da0be870d9";
+
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            //var firestore = FirestoreDb
+            var auth = FirebaseAuth.DefaultInstance;
+            try
+            {
+                var user = await auth.GetUserAsync(uid);
+                return new string[] { "user found", user.Uid };
+            }
+            catch (Exception ex)
+            {
+                var newUser = await auth.CreateUserAsync(new UserRecordArgs
+                {
+                    Uid = uid,
+                });
+                return new string[] { "user created", newUser.Uid };
+            }
+
         }
 
         // GET api/<UserController>/5

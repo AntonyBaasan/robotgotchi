@@ -1,9 +1,21 @@
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<FirebaseApp>((provider) =>
+{
+    var file = builder.Configuration.GetValue<string>("firebase:credential_location");
+    return FirebaseApp.Create(new AppOptions()
+    {
+        Credential = GoogleCredential.FromFile(file)
+    });
+});
 
 var app = builder.Build();
 
@@ -23,6 +35,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 
 app.UseRouting();
 
