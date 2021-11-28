@@ -1,6 +1,6 @@
 let ethereum;
-//let url = location.protocol + '//' + location.hostname;
-let url = 'https://localhost:7226';
+let url = location.protocol + '//' + location.hostname;
+//let url = 'https://localhost:7226';
 let token = '';
 
 const firebaseConfig = {
@@ -65,6 +65,24 @@ async function DetectMetaMask() {
 async function CallApi() {
     try {
         const response = await fetch(url + '/api/user', {
+            method: 'GET', // GET, POST, PUT, DELETE, etc.
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }),
+            mode: 'cors', // no-cors, *cors, same-origin
+        });
+        const body = await response.json();
+        showText(body);
+    } catch (err) {
+        console.log(err);
+        showText(err);
+    }
+}
+
+async function GetNft() {
+    try {
+        const response = await fetch(url + '/api/nft', {
             method: 'GET', // GET, POST, PUT, DELETE, etc.
             headers: new Headers({
                 'Content-Type': 'application/json',

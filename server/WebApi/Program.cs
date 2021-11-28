@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Models.Database;
+using Moralis;
 using Security.Auth;
 using WebApi;
 
@@ -46,6 +47,11 @@ builder.Services.Configure<RobotgotchiDatabaseSettings>(
 builder.Services.AddSingleton<IRobotgotchiDatabaseSettings>(sp =>
     sp.GetRequiredService<IOptions<RobotgotchiDatabaseSettings>>().Value);
 
+builder.Services.AddHttpClient<IMoralisService, MoralisService>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration.GetValue<string>("Moralis:BaseUrl"));
+    c.DefaultRequestHeaders.Add("x-api-key", builder.Configuration.GetValue<string>("Moralis:ApiKey"));
+});
 
 var app = builder.Build();
 

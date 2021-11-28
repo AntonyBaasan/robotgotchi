@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Moralis\Moralis.csproj" />
     <ProjectReference Include="..\Security\Security.csproj" />
   </ItemGroup>
 
