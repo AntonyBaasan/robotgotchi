@@ -1,5 +1,7 @@
 using FirebaseAdmin;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Models.Database;
 using Security.Auth;
 using WebApi;
@@ -10,6 +12,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://securetoken.google.com/robotgotchi-1";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = "https://securetoken.google.com/robotgotchi-1",
+            ValidateAudience = true,
+            ValidAudience = "robotgotchi-1",
+            ValidateLifetime = true
+        };
+    });
 
 
 builder.Services.Configure<RobotgotchiDatabaseSettings>(builder.Configuration.GetSection(nameof(RobotgotchiDatabaseSettings)));
@@ -50,6 +66,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseAuthentication();
 
 app.UseRouting();
 

@@ -1,4 +1,18 @@
 let ethereum;
+//let url = location.protocol + '//' + location.hostname;
+let url = 'https://localhost:7226';
+let token = '';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD4V2Gcj6E1roskQg7yTekz4eCSNkmQgag",
+    authDomain: "robotgotchi-1.firebaseapp.com",
+    projectId: "robotgotchi-1",
+    storageBucket: "robotgotchi-1.appspot.com",
+    messagingSenderId: "292289771339",
+    appId: "1:292289771339:web:7a337df8ff49a8fbc45ace",
+    measurementId: "G-R2F4TGRGFS"
+};
+firebase.initializeApp(firebaseConfig);
 
 async function DetectMetaMask() {
     const provider = await detectEthereumProvider();
@@ -18,7 +32,7 @@ async function DetectMetaMask() {
     console.log(userAddresses[0]);
 
     // STEP2
-    const response = await postData('https://localhost:7226/api/auth/noncetosign', {
+    const response = await postData(url + '/api/auth/noncetosign', {
         address: userAddresses[0],
     });
 
@@ -33,13 +47,37 @@ async function DetectMetaMask() {
     console.log('signature:', signature);
 
     // STEP4
-    const verifyResponse = await postData('https://localhost:7226/api/auth/verifysignedmessage', {
+    const verifyResponse = await postData(url + '/api/auth/verifysignedmessage', {
         signature: signature,
         address: userAddresses[0],
     });
 
     console.log('verifyResponse:', verifyResponse);
-    showResult('logged in successfully: ' + verifyResponse.token);
+    showText('logged in successfully: ' + verifyResponse.token);
+
+    var customToken = verifyResponse.token;
+
+    const userCredential = await firebase.auth().signInWithCustomToken(customToken);
+    const accessToken = await userCredential.user.getIdToken();
+    token = accessToken
+}
+
+async function CallApi() {
+    try {
+        const response = await fetch(url + '/api/user', {
+            method: 'GET', // GET, POST, PUT, DELETE, etc.
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }),
+            mode: 'cors', // no-cors, *cors, same-origin
+        });
+        const body = await response.json();
+        showText(body);
+    } catch (err) {
+        console.log(err);
+        showText(err);
+    }
 }
 
 async function postData(url = '', data = {}) {
@@ -61,7 +99,7 @@ async function postData(url = '', data = {}) {
         return response.json(); // parses JSON response into native JavaScript objects
     } catch (err) {
         console.log(err);
-        showResult(err);
+        showText(err);
     }
 }
 
@@ -72,6 +110,6 @@ function toHex(stringToConvert) {
         .join('');
 }
 
-function showResult(text) {
-    document.getElementById("login-result").textContent = text;
+function showText(text) {
+    document.getElementById('login-result').textContent = text;
 }

@@ -7,10 +7,14 @@
 
 <div id="login-area">
     <button onclick="DetectMetaMask()">Login with Metamask</button>
+    <button onclick="CallApi()">Call API</button>
 </div>
 <div id="result-area">
     <span id="login-result"></span>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.5.0/firebase-app-compat.min.js" integrity="sha512-olDKq6btfW4dFEOUD1yU5ZFuln11Xf1R9AUDiC5tfwtfL7h/yQ19GijHoQcwMqIDzdDW9gfq/LxyRT+k5u/bqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.5.0/firebase-auth-compat.min.js" integrity="sha512-8O1aQM5WPAxzCPhGzqKF2K8qCydhpMNkRHQRmkcNbV5ZYlgR8/g2n/tyHTMkjtliTtAlzjV4K2fWCOCY/ufjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="https://unpkg.com/@@metamask/detect-provider/dist/detect-provider.min.js"></script>
 <script src="/js/metamask.js" language="javascript" type="text/javascript"></script>
