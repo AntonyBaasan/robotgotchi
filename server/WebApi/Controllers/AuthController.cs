@@ -24,7 +24,7 @@ namespace WebApi.Controllers
 
         // GET api/auth/noncetosign
         [HttpPost("noncetosign")]
-        public async Task<object> GetNonceToSign([FromBody] GetNonceToSignRequest request)
+        public async Task<ActionResult<GetNonceToSignResponse>> GetNonceToSign([FromBody] GetNonceToSignRequest request)
         {
             string existingNonce = await tokenService.GetNonceAsync(request.address);
             if (!string.IsNullOrEmpty(existingNonce))
@@ -57,7 +57,7 @@ namespace WebApi.Controllers
 
         // GET api/auth/verifysignedmessage
         [HttpPost("verifysignedmessage")]
-        public async Task<object> VerifySignedMessage([FromBody] VerifySignedMessageRequest request)
+        public async Task<ActionResult<VerifySignedMessageResponse>> VerifySignedMessage([FromBody] VerifySignedMessageRequest request)
         {
             // get nonce for the user
             string existingNonce = await tokenService.GetNonceAsync(request.address);

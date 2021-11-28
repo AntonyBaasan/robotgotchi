@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
 <div><p>Antony v0.2</p></div>
 
-<div>
+<div id="login-area">
     <button onclick="DetectMetaMask()">Login with Metamask</button>
+</div>
+<div id="result-area">
+    <span id="login-result"></span>
 </div>
 
 <script src="https://unpkg.com/@@metamask/detect-provider/dist/detect-provider.min.js"></script>
