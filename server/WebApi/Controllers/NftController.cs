@@ -22,7 +22,11 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<object>> Get()
         {
-            var userAddress = this.User.Claims.FirstOrDefault(c => c.Type == "user_id").Value;
+            var userAddress = this.User.Claims.FirstOrDefault(c => c.Type == "user_id")?.Value;
+            if (userAddress == null)
+            {
+                return new[] { "no user " };
+            }
 
             var t = await GetNfts(userAddress);
 

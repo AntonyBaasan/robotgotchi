@@ -2,11 +2,6 @@
 
 namespace Moralis
 {
-    public interface IMoralisService
-    {
-        Task<MoralisNftResult> GetNftAsync(string userAddress);
-    }
-
     public class MoralisService : IMoralisService
     {
         private readonly HttpClient _httpClient;
@@ -49,6 +44,5 @@ namespace Moralis
         DateTime synced_at { get; set; }
         int frozen { get; set; }
     }
-
 
 }
