@@ -1,5 +1,8 @@
 using FirebaseAdmin;
-using Google.Apis.Auth.OAuth2;
+using Microsoft.Extensions.Options;
+using Models.Database;
+using Security.Auth;
+using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,14 +11,25 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<FirebaseApp>((provider) =>
+
+builder.Services.Configure<RobotgotchiDatabaseSettings>(builder.Configuration.GetSection(nameof(RobotgotchiDatabaseSettings)));
+
+var firebaseCredentialConfiguration = new RobotgotchiFirebaseCredential();
+builder.Configuration.GetSection("firebase").Bind(firebaseCredentialConfiguration);
+
+builder.Services.AddSingleton<FirebaseApp>(sp =>
 {
-    var file = builder.Configuration.GetValue<string>("firebase:credential_location");
-    return FirebaseApp.Create(new AppOptions()
-    {
-        Credential = GoogleCredential.FromFile(file)
-    });
+    var googleCredential = CredentialUtility.GetGoogleCredential(firebaseCredentialConfiguration);
+    return FirebaseApp.Create(new AppOptions() { Credential = googleCredential });
 });
+
+builder.Services.AddSingleton<ITokenService, TokenService>();
+builder.Services.Configure<RobotgotchiDatabaseSettings>(
+        builder.Configuration.GetSection(nameof(RobotgotchiDatabaseSettings)));
+
+builder.Services.AddSingleton<IRobotgotchiDatabaseSettings>(sp =>
+    sp.GetRequiredService<IOptions<RobotgotchiDatabaseSettings>>().Value);
+
 
 var app = builder.Build();
 
