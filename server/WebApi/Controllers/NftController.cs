@@ -29,6 +29,7 @@ namespace WebApi.Controllers
             }
 
             var t = await GetNfts(userAddress);
+            await TestWeb3();
 
             return new[] { t.ToString() };
 
@@ -39,14 +40,15 @@ namespace WebApi.Controllers
             return await moralisService.GetNftAsync(userAddress);
         }
 
-        private static async Task<decimal> GetBalance(string userAddress, Web3 web3)
+        private static async Task<decimal> TestWeb3()
         {
-            var balance = await web3.Eth.GetBalance.SendRequestAsync(userAddress);
-            Console.WriteLine($"Balance in Wei: {balance.Value}");
+            var web3 = new Web3("https://polygon-rpc.com");
 
-            var etherAmount = Web3.Convert.FromWei(balance.Value);
-            Console.WriteLine($"Balance in Ether: {etherAmount}");
-            return etherAmount;
+            var transactionHash = "0xe7b4133f4f3160b5de56c3e777a7b2b38f2cfc15388de1e60945e50dd2b36335";
+
+            var tx = await web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(transactionHash);
+
+            return 10;
         }
     }
 }

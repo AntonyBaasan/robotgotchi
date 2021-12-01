@@ -1,6 +1,6 @@
 let ethereum;
-let url = location.protocol + '//' + location.hostname;
-//let url = 'https://localhost:7226';
+//let url = location.protocol + '//' + location.hostname;
+let url = 'https://localhost:7226';
 let token = '';
 
 const firebaseConfig = {
