@@ -8,6 +8,8 @@
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
+    "copy": "copyfiles dist/*.js ../unity/client",
+    "publish": "npm run build:prod && npm run copy",
     "watch": "webpack --watch"
   },
   "keywords": [],
