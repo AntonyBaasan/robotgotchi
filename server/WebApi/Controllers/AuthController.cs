@@ -26,13 +26,13 @@ namespace WebApi.Controllers
         [HttpPost("noncetosign")]
         public async Task<ActionResult<GetNonceToSignResponse>> GetNonceToSign([FromBody] GetNonceToSignRequest request)
         {
-            string existingNonce = await tokenService.GetNonceAsync(request.address);
-            if (!string.IsNullOrEmpty(existingNonce))
-            {
-                return new GetNonceToSignResponse(existingNonce);
-            }
             try
             {
+                string existingNonce = await tokenService.GetNonceAsync(request.address);
+                if (!string.IsNullOrEmpty(existingNonce))
+                {
+                    return new GetNonceToSignResponse(existingNonce);
+                }
                 // Create new user
                 var auth = FirebaseAuth.GetAuth(firebaseApp);
                 await auth.CreateUserAsync(new UserRecordArgs { Uid = request.address });
