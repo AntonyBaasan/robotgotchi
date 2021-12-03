@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class switch_scene_basic : MonoBehaviour
 {
-
     public string scene_goto;
 
     // Start is called before the first frame update

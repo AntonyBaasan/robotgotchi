@@ -131,7 +131,7 @@ MonoBehaviour:
     value: 1
   edgeOpacity:
     overrideState: 1
-    value: 0.189
+    value: 0.17
   sobelThin:
     overrideState: 0
     value: 0

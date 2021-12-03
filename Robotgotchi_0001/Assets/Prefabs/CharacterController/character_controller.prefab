@@ -237,12 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44879d002460204eb6bafd8a708f84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc_layer:
+  interaction_layer:
     serializedVersion: 2
-    m_Bits: 0
-  door_layer:
-    serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   interaction_objects: []
   active_interaction_object: {fileID: 0}
 --- !u!1 &1284446731261093440
@@ -306,25 +303,6 @@ Transform:
   m_Father: {fileID: 1284446730569160265}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1284446731111180948
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094785906645487325}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9db56d1800a9c1d44910a42d9ef7c411, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1284446730797216652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -396,3 +374,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 212f33cda72d13e4fb514b87db2d7618, type: 3}
   m_PrefabInstance: {fileID: 1284446730797216652}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1284446731111180948
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094785906645487325}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9db56d1800a9c1d44910a42d9ef7c411, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

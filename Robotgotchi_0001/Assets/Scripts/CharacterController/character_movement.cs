@@ -52,18 +52,41 @@ public class character_movement : MonoBehaviour
 
     private void OnEnable()
     {
-        menu_actions.OnMenuHit += CanPlayerMove;
+        menu_actions.PlayerCanMove += CanPlayerMove;
+        menu_actions.PlayerLocationUpdate += UpdateLocation;
     }
 
     private void OnDisable()
     {
-        menu_actions.OnMenuHit += CanPlayerMove;
+        menu_actions.PlayerCanMove -= CanPlayerMove;
+        menu_actions.PlayerLocationUpdate -= UpdateLocation;
     }
 
     //Toggle if the player can move 
-    private void CanPlayerMove(string move)
+    //This is going to be a point of failure - maybe fix this? 
+    private void CanPlayerMove()
     {
-        character_can_move = !character_can_move;
+        if(global_variables.active_menu == null)
+        {
+            global_variables.player_movement = true;
+        }
+        else
+        {
+            global_variables.player_movement = false;
+        }
+        character_can_move = global_variables.player_movement;
+    }
+
+    //Update the character location when going to a new location
+    private void UpdateLocation(Vector3 location)
+    {
+        //Have a little piece that is always floating under the character 
+        Debug.Log("Also Here");
+        character_can_move = false;
+        this.gameObject.transform.position = new Vector3(location[0], location[1], location[2]);
+        Debug.Log(this.gameObject.transform.position);
+        
+
     }
 
     // Main Directional Movement Input // 
@@ -106,7 +129,10 @@ public class character_movement : MonoBehaviour
 
     void Update()
     {
-        MovePlayer();
+        if(character_can_move == true)
+        {
+            MovePlayer();
+        }
     }
 
     // Full Move Function // 

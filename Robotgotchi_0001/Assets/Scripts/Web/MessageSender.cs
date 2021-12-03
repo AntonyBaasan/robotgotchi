@@ -1,48 +1,45 @@
 using UnityEngine;
 using UnityEngine.UI;
-// use web3.jslib
 using System.Runtime.InteropServices;
 using DefaultNamespace;
 using Newtonsoft.Json;
-using UnityEngine.Serialization;
 
 public class MessageSender : MonoBehaviour
 {
     public Text debugText;
-    public Text inputText;
 
     [DllImport("__Internal")]
     private static extern void OnSendToClient(string messageText);
 
     public void SendEchoMessage()
     {
-        var echoMessage = new Message
+        var message = new IRequestMessage()
         {
-            FunctionName = FunctionName.Echo,
-            Data = "Hello World"
+            MessageType = RequestMessageType.Echo,
+            Payload = "Hello World"
         };
-        this.SendToClient(echoMessage);
+        this.SendToClient(message);
     }
     
     public void Login()
     {
-        var message = new Message
+        var message = new IRequestMessage()
         {
-            FunctionName = FunctionName.Login,
+            MessageType = RequestMessageType.Login,
         };
         this.SendToClient(message);
     }
     
-    public void GetWalletAddress()
+    public void Logout()
     {
-        var message = new Message
+        var message = new IRequestMessage()
         {
-            FunctionName = FunctionName.GetWalletAddress,
+            MessageType = RequestMessageType.Logout,
         };
         this.SendToClient(message);
     }
-    
-    private void SendToClient(Message message)
+
+    private void SendToClient(IRequestMessage message)
     {
         debugText.text = "loading...";
         var jsonString = JsonConvert.SerializeObject(message);

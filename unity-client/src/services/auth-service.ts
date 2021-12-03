@@ -25,15 +25,15 @@ export class AuthService extends IMessageListener {
   listenMessage(broker: IMessageBroker): void {
     broker.registerListeners('login', async () => {
       const user = await this.login();
-      return { messageType: 'userInfo', payload: user };
+      return { messageType: 'userinfo', payload: user };
     });
     broker.registerListeners('logout', async () => {
       await this.logout();
-      return { messageType: 'userInfo', payload: null };
+      return { messageType: 'userinfo', payload: null };
     });
-    broker.registerListeners('getCurrentUser', async () => {
+    broker.registerListeners('getcurrentuser', async () => {
       const user = await this.getCurrentUser();
-      return Promise.resolve({ messageType: 'userInfo', payload: user });
+      return Promise.resolve({ messageType: 'userinfo', payload: user });
     });
   }
 
@@ -47,7 +47,11 @@ export class AuthService extends IMessageListener {
     const provider = await (window as any).detectEthereumProvider();
 
     if (!provider) {
-      throw new Error('Please install MetaMask');
+      throw new Error('Please install MetaMask!');
+    }
+
+    if (((window as any).ethereum && (window as any).ethereum.isMetaMask) === false) {
+      throw new Error('Please install MetaMask!');
     }
 
     // STEP1

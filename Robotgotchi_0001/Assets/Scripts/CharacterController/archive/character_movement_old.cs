@@ -350,24 +350,13 @@ public class character_movement_old : MonoBehaviour
 
     private void InteractionStart(GameObject active_interaction)
     {
-        string local_interaction = (active_interaction.GetComponent<interaction_start>().interaction_name);
-        //Debug.Log(active_interaction.GetComponent(local_interaction));
-        //Debug.Log(active_interaction.GetComponent("dialogue_base"));
-
-
+        //Get the interaction on the active element 
         active_interaction.gameObject.GetComponent<dialogue_base>().RunInteraction();
-        active_menu = active_interaction.gameObject.GetComponent<dialogue_base>().dialogue_menu.transform.GetChild(0).gameObject;
-
-        //decide if the character can turn back on 
-        can_character_move = active_interaction.gameObject.GetComponent<dialogue_base>().dialgue_complete;
+        //back up to fix the character movement 
         if (can_character_move == true)
         {
             active_menu = null;
         }
-        //Debug.Log(active_menu);
-
-        //set the active menu the inact the exit items 
-
     }
 
 }

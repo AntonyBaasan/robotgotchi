@@ -778,6 +778,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb4086199e2250c4faa0be37101ca1a2, type: 3}
+--- !u!114 &114838191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1669138527, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+  m_PrefabInstance: {fileID: 632957108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3211752d909fbc4b8d2022e98b1d51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &124340316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4170,9 +4181,8 @@ GameObject:
   m_Component:
   - component: {fileID: 575513263}
   - component: {fileID: 575513262}
-  - component: {fileID: 575513261}
-  - component: {fileID: 575513264}
   - component: {fileID: 575513265}
+  - component: {fileID: 575513264}
   m_Layer: 7
   m_Name: door_scene_changer
   m_TagString: Untagged
@@ -4180,19 +4190,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &575513261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575513260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed419ee43febc3d4689b4f0e29600d2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene_goto: main_menu
 --- !u!65 &575513262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4204,8 +4201,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6175754, y: 0.85791606, z: 0.29332733}
-  m_Center: {x: 0, y: 0.42011246, z: -0.030909061}
+  m_Size: {x: 0.9640545, y: 0.94502383, z: 0.40129232}
+  m_Center: {x: 0, y: 0.40482518, z: -0.08489156}
 --- !u!4 &575513263
 Transform:
   m_ObjectHideFlags: 0
@@ -4214,7 +4211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575513260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.94, y: 0, z: 5.364}
+  m_LocalPosition: {x: 3.94, y: 0.025, z: 5.333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1625603772}
@@ -4234,11 +4231,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16c264932265784ea504055aec789cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interaction_name: swtich_scene
-  character_move: 1
+  interaction_message: {fileID: 957511262}
   has_ui: 0
-  ui_input: {fileID: 0}
-  ui_name: 
+  interaction_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 575513265}
+        m_TargetAssemblyTypeName: switch_location, Assembly-CSharp
+        m_MethodName: SceneUpdate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &575513265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4251,6 +4260,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0e87117be9ddf43b05cd7bc4b6b66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  main_active_scene: 
+  scenes_to_load:
+  - lighting_indoor_base
+  - interior_playground
+  scenes_to_unload:
+  - lighting_outdoor_base
+  - exterior_playground
 --- !u!1 &586299388 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bb4086199e2250c4faa0be37101ca1a2, type: 3}
@@ -4928,6 +4944,34 @@ PrefabInstance:
     - target: {fileID: 2999476298437221068, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478248285327331054, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+      propertyPath: my_event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478248285327331054, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+      propertyPath: my_event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478248285327331054, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+      propertyPath: my_event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 114838191}
+    - target: {fileID: 8478248285327331054, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+      propertyPath: my_event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478248285327331054, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+      propertyPath: my_event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RunInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478248285327331054, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+      propertyPath: my_event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: dialogue_base, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478248285327331054, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
+      propertyPath: my_event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9181824418096389898, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
       propertyPath: m_Enabled
@@ -9947,28 +9991,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.019999996, z: 0.03999999}
   m_Center: {x: 0, y: 0, z: -0.019999996}
---- !u!1 &1455973667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9181824418096389900, guid: 21e3f1d38a0163d46a0a04ea97afb20e, type: 3}
-  m_PrefabInstance: {fileID: 664215852}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1455973672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455973667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a16c264932265784ea504055aec789cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interaction_name: dialogue_base
-  character_move: 0
-  has_ui: 1
-  ui_input: {fileID: 0}
-  ui_name: 
 --- !u!1 &1455991043
 GameObject:
   m_ObjectHideFlags: 0

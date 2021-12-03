@@ -18,15 +18,15 @@ export abstract class IMessageListener {
 
 export type RequestMessageType =
     'echo' |
-    'callTestApi' |
-    'getNft' |
-    'getCurrentUser' |
+    'calltestapi' |
+    'getnft' |
+    'getcurrentuser' |
     'logout' |
     'login';
 
 
 export type ResponseMessageType =
-    'userInfo' |
-    'testResponse' |
-    'echoResponse';
+    'userinfo' |
+    'testresponse' |
+    'echoresponse';
 

@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class interaction_start : MonoBehaviour
 {
-    //base interaction properties 
-    public string interaction_name;
-    public bool character_move = true;
-    
+    //interaction check 
+    public GameObject interaction_message;
     //check to see if there is a UI 
     public bool has_ui = false;
-    public GameObject ui_input;
-    public string ui_name;
-
+    //Unity Events to call 
+    public UnityEvent interaction_event;
 }

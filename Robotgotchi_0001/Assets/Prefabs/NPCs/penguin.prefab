@@ -170,25 +170,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!95 &9181824419121174264
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8335333297220609837}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 366f9e1a024523249adbf163b480e036, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9181824417445940986
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,9 +213,10 @@ GameObject:
   - component: {fileID: 9181824418096389898}
   - component: {fileID: 9181824418096389899}
   - component: {fileID: 1669138527}
+  - component: {fileID: 8478248285327331054}
   m_Layer: 7
   m_Name: penguin
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,13 +277,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3211752d909fbc4b8d2022e98b1d51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue_menu: {fileID: 0}
-  dialogue_text: {fileID: 0}
+  character_avatar: {fileID: 21300000, guid: 5c96bf7bcf1fb3f449f5677d82b51b3f, type: 3}
   dialogue:
   - 'Hi Friend! How Are you doing? '
   - 'This is me talking to you! '
   dialogue_active: 
-  dialgue_complete: 1
+--- !u!114 &8478248285327331054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9181824418096389900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16c264932265784ea504055aec789cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction_message: {fileID: 2999476298437221068}
+  interaction_name: dialogue_base
+  has_ui: 1
+  interaction_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1669138527}
+        m_TargetAssemblyTypeName: dialogue_base, Assembly-CSharp
+        m_MethodName: RunInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &9181824418611780220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,3 +515,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 92f788bd6ce033d44b7fc61263a09a89, type: 3}
   m_PrefabInstance: {fileID: 9181824418611780220}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &9181824419121174264
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8335333297220609837}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 366f9e1a024523249adbf163b480e036, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -1,6 +1,6 @@
 ﻿const RobogotchiWrapper = () => {
     // declared in the main.js
-    const robotgotchiService = new RobotgotchiService(unityInstance);
+    const robotgotchiService = new window.RobotgotchiService(unityInstance);
     
     function receiveUnityMessage(message) {
         var message = JSON.parse(message);

@@ -9,16 +9,16 @@ export class ExampleService extends IMessageListener {
     }
 
     listenMessage(broker: IMessageBroker): void {
-        broker.registerListeners('callTestApi', async () => {
+        broker.registerListeners('calltestapi', async () => {
             const value = await this.callApi();
-            return { messageType: 'testResponse', payload: value };
+            return { messageType: 'testresponse', payload: value };
         });
-        broker.registerListeners('getNft', async () => {
+        broker.registerListeners('getnft', async () => {
             const value = await this.getNft();
-            return { messageType: 'testResponse', payload: value };
+            return { messageType: 'testresponse', payload: value };
         });
         broker.registerListeners('echo', async () => {
-            return Promise.resolve({ messageType: 'echoResponse' });
+            return Promise.resolve({ messageType: 'echoresponse' });
         });
     }
 
