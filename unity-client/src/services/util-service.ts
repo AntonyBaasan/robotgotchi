@@ -30,7 +30,8 @@ export class UtilService {
     }
 
     getUrl() {
-        return location.protocol + '//' + location.hostname + ':' + location.port;
+        // return location.protocol + '//' + location.hostname + ':' + location.port;
+        return 'https://localhost:7226';
     }
 
 

@@ -24,7 +24,6 @@ export type RequestMessageType =
     'logout' |
     'login';
 
-
 export type ResponseMessageType =
     'userinfo' |
     'testresponse' |

@@ -44,13 +44,9 @@ export class AuthService extends IMessageListener {
       return currentUser;
     }
 
-    const provider = await (window as any).detectEthereumProvider();
+    const provider = await (window as any).detectEthereumProvider({ mustBeMetaMask: true });
 
     if (!provider) {
-      throw new Error('Please install MetaMask!');
-    }
-
-    if (((window as any).ethereum && (window as any).ethereum.isMetaMask) === false) {
       throw new Error('Please install MetaMask!');
     }
 

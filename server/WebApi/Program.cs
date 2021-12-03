@@ -7,6 +7,8 @@ using Moralis;
 using Security.Auth;
 using WebApi;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -53,6 +55,20 @@ builder.Services.AddHttpClient<IMoralisService, MoralisService>(c =>
     c.DefaultRequestHeaders.Add("x-api-key", builder.Configuration.GetValue<string>("Moralis:ApiKey"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("http://www.contoso.com")
+                          // allow localhost with any port and protocol
+                          .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials();
+                      });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -69,12 +85,14 @@ else
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApi v1"));
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseAuthentication();
 
 app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

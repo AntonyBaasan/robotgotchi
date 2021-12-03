@@ -5,15 +5,15 @@ async function DetectMetaMask() {
 }
 
 async function CallApi() {
-    await robotgotchi.receiveUnityMessage({ messageType: 'callTestApi' });
+    await robotgotchi.receiveUnityMessage({ messageType: 'calltestapi' });
 }
 
 async function GetNft() {
-    await robotgotchi.receiveUnityMessage({ messageType: 'getNft' });
+    await robotgotchi.receiveUnityMessage({ messageType: 'getnft' });
 }
 
 async function GetCurrentUser() {
-    await robotgotchi.receiveUnityMessage({ messageType: 'getCurrentUser' });
+    await robotgotchi.receiveUnityMessage({ messageType: 'getcurrentuser' });
 }
 
 async function Logout() {

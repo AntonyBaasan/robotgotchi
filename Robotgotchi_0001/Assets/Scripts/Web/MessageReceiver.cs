@@ -10,7 +10,7 @@ public class MessageReceiver : MonoBehaviour
      public void ReceiveClientMessage(string messageText)
      {
          var message = JsonConvert.DeserializeObject<IResponseMessage>(messageText);
-         switch (message.MessageType)
+         switch (message.MessageType.ToLower())
          {
              case ResponseMessageType.EchoResponse:
                  HandleEcho(message);
@@ -32,7 +32,8 @@ public class MessageReceiver : MonoBehaviour
      
      private void HandleUserInfo(IResponseMessage message)
      {
-         debugText.text = message.Payload.ToString();
+         Debug.Log(message.ToString());
+         debugText.text = message.Payload?.ToString();
      }
      
 }
