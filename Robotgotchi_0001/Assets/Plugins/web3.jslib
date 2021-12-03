@@ -2,6 +2,6 @@
 
 mergeInto(LibraryManager.library, {
   OnSendToClient: function(messageText) {
-    robogachi.onSendToClient(UTF8ToString(messageText));
+    robogotchiWrapper.receiveUnityMessage(UTF8ToString(messageText));
   }
 });

@@ -89,13 +89,13 @@
                 // Setup global unityinstance
                 window.unityInstance = unityInstance;
                 // Instantiate robogachi object
-                window.robogachi = Robogachi();
+                window.robogotchiWrapper = RobogotchiWrapper();
               }).catch((message) => {
                 alert(message);
               });
             };
             document.body.appendChild(script);
     </script>
-    <script src="CustomFunctions.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>

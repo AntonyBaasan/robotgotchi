@@ -19,7 +19,6 @@ export class UtilService {
             return response.json(); // parses JSON response into native JavaScript objects
         } catch (err) {
             console.log(err);
-            this.showText(err);
         }
     }
 
@@ -34,9 +33,7 @@ export class UtilService {
         return location.protocol + '//' + location.hostname + ':' + location.port;
     }
 
-    showText(text: string) {
-        document.getElementById('login-result').textContent = text;
-    }
+
 }
 
 

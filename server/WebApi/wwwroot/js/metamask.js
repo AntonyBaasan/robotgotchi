@@ -1,13 +1,22 @@
-var robotgotchi = new Robotgotchi();
+var robotgotchi = new RobotgotchiService();
 
 async function DetectMetaMask() {
-    await robotgotchi.login();
+    await robotgotchi.receiveUnityMessage({ messageType: 'login' });
 }
 
 async function CallApi() {
-    await robotgotchi.callTestApi();
+    await robotgotchi.receiveUnityMessage({ messageType: 'callTestApi' });
 }
 
 async function GetNft() {
-    await robotgotchi.getNft();
+    await robotgotchi.receiveUnityMessage({ messageType: 'getNft' });
 }
+
+async function GetCurrentUser() {
+    await robotgotchi.receiveUnityMessage({ messageType: 'getCurrentUser' });
+}
+
+async function Logout() {
+    await robotgotchi.receiveUnityMessage({ messageType: 'logout' });
+}
+
