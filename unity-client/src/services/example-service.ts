@@ -26,7 +26,7 @@ export class ExampleService extends IMessageListener {
         const user = await this.authService.getCurrentUser();
         const token = user ? user.token : '';
         try {
-            const response = await fetch(this.utilService.getUrl() + '/api/user', {
+            const response = await fetch(this.utilService.getWebApiUrl() + '/api/user', {
                 method: 'GET', // GET, POST, PUT, DELETE, etc.
                 headers: new Headers({
                     'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export class ExampleService extends IMessageListener {
         const user = await this.authService.getCurrentUser();
         const token = user ? user.token : '';
         try {
-            const response = await fetch(this.utilService.getUrl() + '/api/nft', {
+            const response = await fetch(this.utilService.getWebApiUrl() + '/api/nft', {
                 method: 'GET', // GET, POST, PUT, DELETE, etc.
                 headers: new Headers({
                     'Content-Type': 'application/json',

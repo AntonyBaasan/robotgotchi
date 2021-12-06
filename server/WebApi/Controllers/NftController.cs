@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Moralis;
+using Moralis.Models;
 using Nethereum.Web3;
+using Robotgotchi.Dto.Nft;
 
 namespace WebApi.Controllers
 {
@@ -10,29 +13,29 @@ namespace WebApi.Controllers
     [ApiController]
     public class NftController : ControllerBase
     {
+        private readonly IMapper mapper;
         private readonly IMoralisService moralisService;
-        private readonly string userAddress = "0x0e90709f60fdacea987fcbba0927e0da0be870d9";
+        //private readonly string userAddress = "0x0e90709f60fdacea987fcbba0927e0da0be870d9";
 
-        public NftController(IMoralisService moralisService)
+        public NftController(IMoralisService moralisService, IMapper mapper)
         {
             this.moralisService = moralisService;
+            this.mapper = mapper;
         }
 
         // GET: api/<UserController>
         [HttpGet]
-        public async Task<IEnumerable<object>> Get()
+        public async Task<IEnumerable<NftModel>> Get()
         {
-            var userAddress = this.User.Claims.FirstOrDefault(c => c.Type == "user_id")?.Value;
-            if (userAddress == null)
-            {
-                return new[] { "no user " };
-            }
+            var userAddress = User.Claims.FirstOrDefault(c => c.Type == "user_id")?.Value;
+            if (userAddress == null) { return Array.Empty<NftModel>(); }
 
             var t = await GetNfts(userAddress);
-            await TestWeb3();
+            if (t == null) { return Array.Empty<NftModel>(); }
 
-            return new[] { t.ToString() };
-
+            //await TestWeb3();
+            var models = t.result.Select(r => mapper.Map<NftModel>(r)).ToList();
+            return models;
         }
 
         private async Task<MoralisNftResult> GetNfts(string userAddress)

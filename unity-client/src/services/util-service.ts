@@ -1,3 +1,5 @@
+declare const WEBAPI_URL: string;
+
 export class UtilService {
 
     async postData(url = '', data = {}) {
@@ -29,14 +31,8 @@ export class UtilService {
             .join('');
     }
 
-    getUrl() {
-        // return location.protocol + '//' + location.hostname + ':' + location.port;
-        return 'https://localhost:7226';
+    getWebApiUrl() {
+        return WEBAPI_URL;
     }
 
-
 }
-
-
-
-

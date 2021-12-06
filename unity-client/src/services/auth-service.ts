@@ -61,7 +61,7 @@ export class AuthService extends IMessageListener {
     console.log(userAddresses[0]);
 
     // STEP2
-    const url = this.utilService.getUrl();
+    const url = this.utilService.getWebApiUrl();
     const response = await this.utilService.postData(url + '/api/auth/noncetosign', {
       address: userAddresses[0],
     });

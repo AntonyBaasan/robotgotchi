@@ -9,10 +9,10 @@
     "build:dev": "webpack --mode=development",
     "build:dev:copy": "npm run build:dev && npm run copy:webapi && npm run copy:unity",
     "build:prod": "webpack --mode=production --node-env=production",
+    "build:prod:copy": "npm run build:prod && npm run copy:webapi && npm run copy:unity",
     "publish": "npm run build:prod",
     "copy:webapi": "copyfiles -u 1 dist/*.js ../server/WebApi/wwwroot/js",
     "copy:unity": "copyfiles -u 1 dist/*.js ../Robotgotchi_0001/Assets/WebGLTemplates/TemplateData/script",
-    "publishAndCopy": "npm run build:prod && npm run copy:webapi && npm run copy:unity",
     "watch": "webpack --watch"
   },
   "keywords": [],

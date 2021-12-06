@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Models.Database;
 using Moralis;
+using Moralis.AutoMapper;
 using Security.Auth;
 using WebApi;
 
@@ -33,9 +34,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.Configure<RobotgotchiDatabaseSettings>(builder.Configuration.GetSection(nameof(RobotgotchiDatabaseSettings)));
 
+// Setup automapper: register profiles
+builder.Services.AddAutoMapper(typeof(MoralisAutoMapperProfile));
+
+//setup firebase credentials (reads form appsettings.json)
 var firebaseCredentialConfiguration = new RobotgotchiFirebaseCredential();
 builder.Configuration.GetSection("firebase").Bind(firebaseCredentialConfiguration);
-
 builder.Services.AddSingleton<FirebaseApp>(sp =>
 {
     var googleCredential = CredentialUtility.GetGoogleCredential(firebaseCredentialConfiguration);
