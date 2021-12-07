@@ -11,12 +11,16 @@ public class character_interaction : MonoBehaviour
     [SerializeField]
     private GameObject active_interaction_object;
     private float interaction_closest;
-
+   
     public void OnInteract(InputAction.CallbackContext value)
     {
         if (value.started)
         {
             InteractionStart();
+        }
+        if(value.canceled)
+        {
+            InteractionEnd();
         }
     }
 
@@ -108,12 +112,25 @@ public class character_interaction : MonoBehaviour
         //From the interaction start invoke the unity event 
         //I decided to do it like this instead of an action as I didn't want to add ever NPC function and have to check if it was action 
         //But let me know if there is another way to do this
+
+        //Set the interaction type 
+        if (active_interaction_object.GetComponent<interaction_start>().is_a_counter == true)
+        {
+            active_interaction_object.GetComponent<interaction_start>().interaction_counter_input = 1;
+        }
         active_interaction_object.GetComponent<interaction_start>().interaction_event.Invoke();
-        //Might need something custom for scene switching
-        //hmmmmm..... 
+
     }
 
-    //
+    private void InteractionEnd()
+    {
+        if (active_interaction_object.GetComponent<interaction_start>().is_a_counter == true)
+        {
+            active_interaction_object.GetComponent<interaction_start>().interaction_counter_input = 0;
+            active_interaction_object.GetComponent<interaction_start>().interaction_event.Invoke();
+        }
+    }
+
     private void InteractiveReset()
     {
         active_interaction_object = null;
