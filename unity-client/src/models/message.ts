@@ -22,10 +22,12 @@ export type RequestMessageType =
     'getnft' |
     'getcurrentuser' |
     'logout' |
+    'globalsettings' |
     'login';
 
 export type ResponseMessageType =
     'userinfo' |
     'testresponse' |
+    'globalsettings' |
     'echoresponse';
 

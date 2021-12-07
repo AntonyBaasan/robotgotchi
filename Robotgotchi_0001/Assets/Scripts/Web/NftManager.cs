@@ -8,8 +8,6 @@ using UnityEngine.Networking;
 public class NftManager : MonoBehaviour
 {
     public WebSettings webSettings;
-
-    private string baseUrl = "";
     private const string api = "/api/nft";
 
     public int nftCount = 0;
@@ -19,7 +17,6 @@ public class NftManager : MonoBehaviour
     void Start()
     {
         webSettings = FindObjectOfType<WebSettings>();
-        baseUrl = webSettings.BaseUrl;
     }
 
     public void LoadUserNft()
@@ -29,7 +26,7 @@ public class NftManager : MonoBehaviour
 
     private IEnumerator SendRequestLoadUserNft()
     {
-        var uri = baseUrl + api;
+        var uri = webSettings.WebApiUrl + api;
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
             webRequest.SetRequestHeader("authorization", "Bearer " + webSettings.GetToken());

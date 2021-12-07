@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
@@ -11,6 +12,20 @@ public class MessageSender : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void OnSendToClient(string messageText);
 
+    void Start()
+    {
+        StartCoroutine(GetGlobalSettings(2));
+    }
+
+    public void UpdateGlobalSettings()
+    {
+        var message = new IRequestMessage()
+        {
+            MessageType = RequestMessageType.GlobalSettings,
+        };
+        SendToClient(message);
+    }
+
     public void SendEchoMessage()
     {
         var message = new IRequestMessage()
@@ -20,7 +35,7 @@ public class MessageSender : MonoBehaviour
         };
         this.SendToClient(message);
     }
-    
+
     public void Login()
     {
         var message = new IRequestMessage()
@@ -29,7 +44,7 @@ public class MessageSender : MonoBehaviour
         };
         this.SendToClient(message);
     }
-    
+
     public void Logout()
     {
         var message = new IRequestMessage()
@@ -45,5 +60,12 @@ public class MessageSender : MonoBehaviour
         var jsonString = JsonConvert.SerializeObject(message);
         Debug.Log(jsonString);
         OnSendToClient(jsonString);
+    }
+
+    IEnumerator GetGlobalSettings(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        UpdateGlobalSettings();
     }
 }

@@ -4,10 +4,12 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 using Robotgotchi.Dto.Identity;
+using Robotgotchi.Dto.Settings;
 
 public class MessageReceiver : MonoBehaviour
 {
     public Text debugText;
+    public Action<GlobalSettings> GlobalSettingsReceived;
     public Action<UserInfo> UserInfoChanged;
 
     public void ReceiveClientMessage(string messageText)
@@ -21,6 +23,9 @@ public class MessageReceiver : MonoBehaviour
                 break;
             case ResponseMessageType.UserInfo:
                 HandleUserInfo(message);
+                break;
+            case ResponseMessageType.GlobalSettings:
+                HandleGlobalSettings(message);
                 break;
             default:
                 Debug.Log("No handler for a message:");
@@ -42,6 +47,17 @@ public class MessageReceiver : MonoBehaviour
             Debug.Log("deserialize, userInfo.uid: " + userInfo.Uid);
             Debug.Log("deserialize, userInfo.token: " + userInfo.Token);
             UserInfoChanged?.Invoke(userInfo);
+            debugText.text = "user received!";
+        }
+    }
+    
+    private void HandleGlobalSettings(IResponseMessage message)
+    {
+        if (message.Payload != null)
+        {
+            var globalSettings = JsonConvert.DeserializeObject<GlobalSettings>(message.Payload.ToString());
+            Debug.Log("deserialize, globalSettings.WebApiUrl: " + globalSettings.WebApiUrl);
+            GlobalSettingsReceived?.Invoke(globalSettings);
             debugText.text = "user received!";
         }
     }

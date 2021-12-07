@@ -23,15 +23,13 @@ namespace DefaultNamespace
         public const string Echo = "echo";
         public const string Login = "login";
         public const string Logout = "logout";
-        public const string GetCurrentUser = "getcurrentuser";
-        public const string GetNft = "getnft";
-        public const string CallTestApi = "callTestApi";
+        public const string GlobalSettings = "globalsettings";
     }
     
     public static class ResponseMessageType
     {
         public const string UserInfo = "userinfo";
-        public const string TestResponse = "testresponse";
         public const string EchoResponse = "echoresponse";
+        public const string GlobalSettings = "globalsettings";
     }
 }

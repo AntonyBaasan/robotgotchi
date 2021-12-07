@@ -1,6 +1,4 @@
-import { AuthService } from './services/auth-service';
-import { ExampleService } from './services/example-service';
-import { UtilService } from './services/util-service';
+import { AuthService, ExampleService, UtilService, DiscoveryService } from './services/index';
 import { IMessageBroker, IRequestMessage, IResponseMessage, RequestMessageType } from './models/index';
 
 export class UnityBridge implements IMessageBroker {
@@ -8,6 +6,7 @@ export class UnityBridge implements IMessageBroker {
     private utilService: UtilService;
     private exampleService: ExampleService;
     private authService: AuthService;
+    private discoveryService: DiscoveryService;
 
     private subscribers: { [messageType in RequestMessageType]: { (message: IRequestMessage): Promise<IResponseMessage<any>> }[] } = {} as any;
     private responseMessageListener: (message: IResponseMessage<any>) => void
@@ -16,8 +15,10 @@ export class UnityBridge implements IMessageBroker {
         this.utilService = new UtilService();
         this.authService = new AuthService(this.utilService);
         this.exampleService = new ExampleService(this.authService, this.utilService);
+        this.discoveryService = new DiscoveryService(this.utilService);
 
         this.authService.listenMessage(this);
+        this.discoveryService.listenMessage(this);
         this.exampleService.listenMessage(this);
     }
 
