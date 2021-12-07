@@ -15,7 +15,14 @@ public class WebSettings : MonoBehaviour
 
     private void OnUserInfoChanged(UserInfo userInfo)
     {
+        Debug.Log("WebSettings uid: " + userInfo.Uid);
+        Debug.Log("WebSettings token: " + userInfo.Token);
         Token = userInfo.Token;
+    }
+
+    public string GetToken()
+    {
+        return Token;
     }
 
     // Update is called once per frame

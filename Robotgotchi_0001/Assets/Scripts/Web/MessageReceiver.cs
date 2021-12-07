@@ -38,8 +38,9 @@ public class MessageReceiver : MonoBehaviour
     {
         if (message.Payload != null)
         {
-            Debug.Log(message.Payload.ToString());
             var userInfo = JsonConvert.DeserializeObject<UserInfo>(message.Payload.ToString());
+            Debug.Log("deserialize, userInfo.uid: " + userInfo.Uid);
+            Debug.Log("deserialize, userInfo.token: " + userInfo.Token);
             UserInfoChanged?.Invoke(userInfo);
             debugText.text = "user received!";
         }

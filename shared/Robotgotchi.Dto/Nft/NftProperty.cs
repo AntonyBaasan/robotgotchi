@@ -1,12 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace Robotgotchi.Dto.Nft
 {
-    [Serializable]
     public class NftProperty
     {
-        [JsonConstructor]
         public NftProperty()
         {
         }

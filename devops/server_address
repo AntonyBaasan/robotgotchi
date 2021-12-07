@@ -1,0 +1,13 @@
+DEV:
+
+// web application
+https://localhost:8001
+// web api
+https://localhost:9001
+
+PROD:
+
+// web application
+https://robotgotchi-game.vercel.app/
+// web api
+https://robotgotchi-s793a.ondigitalocean.app

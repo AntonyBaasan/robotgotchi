@@ -4,6 +4,7 @@ namespace Robotgotchi.Dto.Identity
 {
     public class UserInfo
     {
+        [JsonConstructor]
         public UserInfo()
         {
         }

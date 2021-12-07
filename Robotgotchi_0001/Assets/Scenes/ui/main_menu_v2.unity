@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a611fe4db99d40043afed408078aa912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseUrl: https://localhost:7226
+  BaseUrl: https://localhost:9001
   Token: 
 --- !u!1 &659567225
 GameObject:
@@ -1044,9 +1044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   webSettings: {fileID: 0}
   nftCount: 0
-  nftModels: []
-  nftModels2: []
-  nftModels3: []
 --- !u!1 &1104225100
 GameObject:
   m_ObjectHideFlags: 0

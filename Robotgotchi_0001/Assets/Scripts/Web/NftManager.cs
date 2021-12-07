@@ -13,14 +13,13 @@ public class NftManager : MonoBehaviour
     private const string api = "/api/nft";
 
     public int nftCount = 0;
-    public List<NftModel> nftModels;
-    public NftModel[] nftModels2;
-    public string[] nftModels3;
-
+    public List<NftModel> AllSkinNfts { get; set; }
+    public List<NftModel> UserNfts { get; set; }
+    
     void Start()
     {
         webSettings = FindObjectOfType<WebSettings>();
-        this.baseUrl = webSettings.BaseUrl;
+        baseUrl = webSettings.BaseUrl;
     }
 
     public void LoadUserNft()
@@ -33,7 +32,7 @@ public class NftManager : MonoBehaviour
         var uri = baseUrl + api;
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
-            webRequest.SetRequestHeader("authorization", "Bearer " + webSettings.Token);
+            webRequest.SetRequestHeader("authorization", "Bearer " + webSettings.GetToken());
 
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
@@ -60,9 +59,9 @@ public class NftManager : MonoBehaviour
 
     public void HandleSuccessResponse(string nftModelResult)
     {
-        // var result = JsonConvert.DeserializeObject<List<NftModel>>(nftModelResult);
-        var result = JsonUtility.FromJson<List<NftModel>>(nftModelResult);
+        var result = JsonConvert.DeserializeObject<List<NftModel>>(nftModelResult);
         nftCount = result.Count;
-        nftModels = result;
+        UserNfts = result;
+        Debug.Log(nftCount); 
     }
 }

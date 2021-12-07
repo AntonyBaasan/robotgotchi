@@ -1,0 +1,6 @@
+<!--https://github.com/jilleJr/Newtonsoft.Json-for-Unity/wiki/Reference-link.xml-->
+<!--https://github.com/jilleJr/Newtonsoft.Json-for-Unity/wiki/Fix-AOT-using-link.xml-->
+<linker>
+    <assembly fullname="Robotgotchi.Dto" preserve="all">
+    </assembly>
+</linker>

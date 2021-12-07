@@ -1,13 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 
 namespace Robotgotchi.Dto.Nft
 {
-    [Serializable]
     public class NftMetadata
     {
-        [JsonConstructor]
         public NftMetadata()
         {
         }

@@ -5,7 +5,7 @@ const webpack = require("webpack");
 
 const isProduction = process.env.NODE_ENV == 'production';
 
-const webApiHost = isProduction ? "'https://robotgotchi-s793a.ondigitalocean.app'" : "'https://localhost:7226'";
+const webApiHost = isProduction ? "'https://robotgotchi-s793a.ondigitalocean.app'" : "'https://localhost:9001'";
 
 const stylesHandler = 'style-loader';
 

@@ -3,10 +3,8 @@ using System;
 
 namespace Robotgotchi.Dto.Nft
 {
-    [Serializable]
     public class NftModel
     {
-        [JsonConstructor]
         public NftModel()
         {
         }
