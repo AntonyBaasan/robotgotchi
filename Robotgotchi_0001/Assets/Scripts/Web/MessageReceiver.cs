@@ -49,6 +49,11 @@ public class MessageReceiver : MonoBehaviour
             UserInfoChanged?.Invoke(userInfo);
             debugText.text = "user received!";
         }
+        else
+        {
+            UserInfoChanged?.Invoke(null);
+            debugText.text = "user object is empty!";
+        }
     }
     
     private void HandleGlobalSettings(IResponseMessage message)
