@@ -124,6 +124,11 @@ public class character_interaction : MonoBehaviour
 
     private void InteractionEnd()
     {
+        if (active_interaction_object == null)
+        {
+            return;
+        }
+
         if (active_interaction_object.GetComponent<interaction_start>().is_a_counter == true)
         {
             active_interaction_object.GetComponent<interaction_start>().interaction_counter_input = 0;
