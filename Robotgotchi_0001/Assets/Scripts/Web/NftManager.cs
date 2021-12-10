@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Newtonsoft.Json;
 using Robotgotchi.Dto.Nft;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class NftManager : MonoBehaviour
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
             webRequest.SetRequestHeader("authorization", "Bearer " + webSettings.GetToken());
-
+            webRequest.certificateHandler = new AcceptAllCertificatesSignedWithASpecificKeyPublicKey();
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
 
@@ -60,5 +61,21 @@ public class NftManager : MonoBehaviour
         nftCount = result.Count;
         UserNfts = result;
         Debug.Log(nftCount); 
+    }
+}
+
+class AcceptAllCertificatesSignedWithASpecificKeyPublicKey : CertificateHandler
+{
+ 
+    // Encoded RSAPublicKey
+    private static string PUB_KEY = "mypublickey";
+    protected override bool ValidateCertificate(byte[] certificateData)
+    {
+        // X509Certificate2 certificate = new X509Certificate2(certificateData);
+        // string pk = certificate.GetPublicKeyString();
+        // if (pk.ToLower().Equals(PUB_KEY.ToLower()))
+        //     return true;
+        // return false;
+        return true;
     }
 }
